@@ -1,0 +1,28 @@
+{
+  "name": "product-feedback",
+  "version": "1.0.0",
+  "description": "Product Feedback App",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "server": "supervisor backend/server.js",
+    "client": "npm run dev --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "Ope Afolabi",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-async-handler": "^1.2.0",
+    "google-auth-library": "^8.7.0",
+    "jsonwebtoken": "^9.0.0",
+    "mongodb": "^5.7.0",
+    "mongoose": "^6.9.2"
+  },
+  "devDependencies": {
+    "concurrently": "^7.6.0",
+    "supervisor": "^0.12.0"
+  }
+}
