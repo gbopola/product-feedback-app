@@ -6,7 +6,7 @@
 
 <h4 align="center">A product feedback app built with React.js, Redux, Redux Toolkit, Node.js, Express and MongoDB.</h4>
 
-![screenshot](https://github.com/Ope-Afolabi/product-feedback-app/blob/main/readme%20img.png)
+![screenshot](https://github.com/gbopola/product-feedback-app/blob/master/readme%20img.png)
 
 ## Key Features
 
