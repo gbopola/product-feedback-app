@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-
+import { motion } from "framer-motion";
 import { getSingleFeedback, reset } from "../features/feedback/feedbackSlice";
 import { useDispatch, useSelector } from "react-redux";
 import EditForm from "../components/edit/EditForm";
@@ -14,7 +14,9 @@ const EditFeedback = () => {
   }, []);
 
   return feedback && feedback.title ? (
-    <EditForm feedback={feedback} />
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+      <EditForm feedback={feedback} />
+    </motion.div>
   ) : (
     <LoadingSpinner />
   );

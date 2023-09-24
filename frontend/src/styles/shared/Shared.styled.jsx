@@ -33,11 +33,6 @@ const Title = styled.p`
   letter-spacing: -0.25px;
 `;
 
-const Wrapper = styled.div`
-  width: 1100px;
-  margin: 6rem auto;
-`;
-
 const DetailsWrapper = styled.div`
   width: 730px;
   margin: 6rem auto;
@@ -120,7 +115,6 @@ export {
   FeedbackBtn,
   FeedbackBtnIcon,
   Title,
-  Wrapper,
   DetailsWrapper,
   CommentsWrapper,
   CommentsIcon,

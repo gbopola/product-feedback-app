@@ -11,6 +11,7 @@ import {
   FormLinkBold,
 } from "../styles/auth/Auth.styled";
 import { register } from "../features/auth/authSlice";
+import { motion } from "framer-motion";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -48,30 +49,33 @@ const Register = () => {
   };
 
   return (
-    <FormWrapper onSubmit={handleSubmit}>
-      <FormTitle>Sign in to your account</FormTitle>
-      <p className="form-text">Log in to gain access to the feeback board</p>
-      <FormLabel>Email Address</FormLabel>
-      <FormInput
-        id="email"
-        name="email"
-        value={email}
-        type="text"
-        onChange={onChange}
-      />
-      <FormLabel>Password</FormLabel>
-      <FormInput
-        id="password"
-        name="password"
-        value={password}
-        type="text"
-        onChange={onChange}
-      />
-      <FormBtn type="submit">Log in</FormBtn>
-      <FormLink>
-        Don't have an account? <FormLinkBold to="/register">Register</FormLinkBold>
-      </FormLink>
-    </FormWrapper>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+      <FormWrapper onSubmit={handleSubmit}>
+        <FormTitle>Sign in to your account</FormTitle>
+        <p className="form-text">Log in to gain access to the feeback board</p>
+        <FormLabel>Email Address</FormLabel>
+        <FormInput
+          id="email"
+          name="email"
+          value={email}
+          type="text"
+          onChange={onChange}
+        />
+        <FormLabel>Password</FormLabel>
+        <FormInput
+          id="password"
+          name="password"
+          value={password}
+          type="text"
+          onChange={onChange}
+        />
+        <FormBtn type="submit">Log in</FormBtn>
+        <FormLink>
+          Don't have an account?{" "}
+          <FormLinkBold to="/register">Register</FormLinkBold>
+        </FormLink>
+      </FormWrapper>
+    </motion.div>
   );
 };
 

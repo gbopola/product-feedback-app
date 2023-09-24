@@ -5,6 +5,7 @@ const initialState = {
   feedback: [],
   feedbacks: [],
   filteredFeedbacks: [],
+  roadmapFeedbacks: [],
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -148,6 +149,25 @@ export const editFeedback = createAsyncThunk(
   }
 );
 
+// add comment to feedback
+export const addComment = createAsyncThunk(
+  "feedbacks/addComment",
+  async ({ comment, feedbackId }, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.user.token;
+      return await feedbackService.addComment({ comment, feedbackId }, token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 export const feedbackSlice = createSlice({
   name: "feedback",
   initialState,
@@ -173,7 +193,7 @@ export const feedbackSlice = createSlice({
       .addCase(createFeedback.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.feedbacks.push(action.payload);
+        state.filteredFeedbacks.push(action.payload);
       })
       .addCase(createFeedback.rejected, (state, action) => {
         state.isLoading = false;
@@ -200,7 +220,7 @@ export const feedbackSlice = createSlice({
       .addCase(getAllRoadmap.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.feedbacks = action.payload;
+        state.roadmapFeedbacks = action.payload;
       })
       .addCase(getAllRoadmap.rejected, (state, action) => {
         state.isLoading = false;
@@ -218,6 +238,19 @@ export const feedbackSlice = createSlice({
         );
       })
       .addCase(editFeedback.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(addComment.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(addComment.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.feedback = action.payload;
+      })
+      .addCase(addComment.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
@@ -260,6 +293,9 @@ export const feedbackSlice = createSlice({
           feedback._id === action.payload._id ? action.payload : feedback
         );
         state.feedback = action.payload;
+        state.roadmapFeedbacks = state.roadmapFeedbacks.map((feedback) =>
+          feedback._id === action.payload._id ? action.payload : feedback
+        );
       })
       .addCase(upvoteFeedback.rejected, (state, action) => {
         state.isError = true;

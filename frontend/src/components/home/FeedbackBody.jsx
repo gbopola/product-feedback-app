@@ -47,9 +47,12 @@ const FeedbackBody = ({ feedbacks }) => {
 
   return (
     <FeedbackCardContainer>
-      {sortedFeedbacks.map((feedback) => (
-        <FeedbackCard key={feedback._id} feedback={feedback} />
-      ))}
+      {sortedFeedbacks.map(
+        (feedback) =>
+          feedback.status === "suggestion" && (
+            <FeedbackCard key={feedback._id} feedback={feedback} />
+          )
+      )}
     </FeedbackCardContainer>
   );
 };

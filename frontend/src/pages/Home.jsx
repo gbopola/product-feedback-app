@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import {
   HomeColumnOne,
   HomeColumnTwo,
@@ -9,17 +10,26 @@ import Status from "../components/home/Status";
 import TopBar from "../components/home/TopBar";
 import FeedbackEmpty from "../components/home/FeedbackEmpty";
 import FeedbackBody from "../components/home/FeedbackBody";
-import { Wrapper } from "../styles/shared/Shared.styled";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getFeedbacks, reset } from "../features/feedback/feedbackSlice";
+import {
+  getAllRoadmap,
+  getFeedbacks,
+  reset,
+} from "../features/feedback/feedbackSlice";
 import LoadingSpinner from "../components/shared/LoadingSpinner";
 
 const Home = () => {
   const dispatch = useDispatch();
 
-  const { filteredFeedbacks, feedbacks, isLoading, isError, message } =
-    useSelector((state) => state.feedback);
+  const {
+    filteredFeedbacks,
+    feedbacks,
+    roadmapFeedbacks,
+    isLoading,
+    isError,
+    message,
+  } = useSelector((state) => state.feedback);
 
   useEffect(() => {
     dispatch(getFeedbacks());
@@ -28,12 +38,12 @@ const Home = () => {
   return isLoading ? (
     <LoadingSpinner />
   ) : (
-    <Wrapper>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       <HomeWrapper>
         <HomeColumnOne>
           <Banner />
           <Tags />
-          <Status />
+          <Status feedbacks={feedbacks} />
         </HomeColumnOne>
         <HomeColumnTwo>
           <TopBar feedbacks={filteredFeedbacks} />
@@ -41,7 +51,7 @@ const Home = () => {
           <FeedbackBody feedbacks={filteredFeedbacks} />
         </HomeColumnTwo>
       </HomeWrapper>
-    </Wrapper>
+    </motion.div>
   );
 };
 

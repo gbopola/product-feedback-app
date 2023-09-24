@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Title } from "../shared/Shared.styled";
 
 const RoadmapContainer = styled.div`
   display: grid;
@@ -13,6 +14,12 @@ const RoadmapCardContainer = styled.div`
   border-radius: 5px;
   padding: 1.75rem;
   border-top: ${(props) => `6px solid ${props.color}`};
+
+  &:hover ${Title} {
+    color: #4661e6;
+    transition: 0.2s;
+    cursor: pointer;
+  }
 `;
 
 const RoadmapHeader = styled.div`

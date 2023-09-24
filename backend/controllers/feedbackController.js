@@ -27,7 +27,7 @@ const createFeedback = asyncHandler(async (req, res) => {
 // @route   GET /api/feedback
 // @access  Private
 const getAllFeedback = asyncHandler(async (req, res) => {
-  const feedback = await Feedback.find({ status: "suggestion" });
+  const feedback = await Feedback.find();
 
   res.status(200).json(feedback);
 });
@@ -115,7 +115,7 @@ const deleteFeedback = asyncHandler(async (req, res) => {
 // @access  Private
 const addComment = asyncHandler(async (req, res) => {
   const feedback = await Feedback.findById(req.params.id);
-  const { content } = req.body;
+  const { comment } = req.body;
   if (!feedback) {
     res.status(400);
     throw new Error("Feedback not found");
@@ -127,6 +127,12 @@ const addComment = asyncHandler(async (req, res) => {
     throw new Error("User not found");
   }
 
+  // check for comment
+  if (!comment) {
+    res.status(400);
+    throw new Error("Comment must be added");
+  }
+
   // Make sure the logged in user matches the feedback user
   if (feedback.user.toString() !== req.user.id) {
     res.status(401);
@@ -135,7 +141,7 @@ const addComment = asyncHandler(async (req, res) => {
 
   const newComment = {
     user: req.user.id,
-    content,
+    comment,
   };
 
   const updatedFeedback = await Feedback.findByIdAndUpdate(

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   StatusWrapper,
   StatusTitle,
@@ -7,8 +7,9 @@ import {
   StatusGroupContainer,
 } from "../../styles/home/Status.styled";
 import StatusBar from "./StatusBar";
+import { countFeedback } from "../../utils/functions";
 
-const Status = () => {
+const Status = ({ feedbacks }) => {
   return (
     <StatusWrapper>
       <StatusHeader>
@@ -16,9 +17,21 @@ const Status = () => {
         <StatusLink to="/roadmap">View</StatusLink>
       </StatusHeader>
       <StatusGroupContainer>
-        <StatusBar title="Planned" count={0} color="#f49f85" />
-        <StatusBar title="In-Progess" count={0} color="#AD1FEA" />
-        <StatusBar title="Live" count={0} color="#62BCFA" />
+        <StatusBar
+          title="Planned"
+          count={countFeedback(feedbacks, "planned")}
+          color="#f49f85"
+        />
+        <StatusBar
+          title="In-Progess"
+          count={countFeedback(feedbacks, "in-progress")}
+          color="#AD1FEA"
+        />
+        <StatusBar
+          title="Live"
+          count={countFeedback(feedbacks, "live")}
+          color="#62BCFA"
+        />
       </StatusGroupContainer>
     </StatusWrapper>
   );

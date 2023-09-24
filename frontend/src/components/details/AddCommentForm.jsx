@@ -5,6 +5,8 @@ import {
   FormErrorMessage,
   FormTextArea,
 } from "../../styles/createFeedback/createFeedback.styled";
+import { useDispatch } from "react-redux";
+import { addComment } from "../../features/feedback/feedbackSlice";
 
 const AddCommentForm = ({ id }) => {
   const [error, setError] = useState(false);
@@ -22,13 +24,15 @@ const AddCommentForm = ({ id }) => {
     setText(e.target.value);
   };
 
+  const dispatch = useDispatch();
+
   // Function to add comment
   const postComment = () => {
     if (text === "") {
       return setError(true);
     }
 
-    return dispatch(postComment(text, id));
+    dispatch(addComment({ comment: text, feedbackId: id }));
   };
 
   return (

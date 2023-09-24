@@ -35,9 +35,8 @@ const feedbackSchema = mongoose.Schema(
           required: true,
           ref: "User",
         },
-        content: {
+        comment: {
           type: String,
-          required: true,
         },
         replies: [
           {
@@ -46,7 +45,7 @@ const feedbackSchema = mongoose.Schema(
               required: true,
               ref: "User",
             },
-            content: {
+            comment: {
               type: String,
               required: [true, "Please add a comment"],
             },

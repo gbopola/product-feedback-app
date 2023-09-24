@@ -18,8 +18,10 @@ import { Tag } from "../../styles/home/Tags.styled";
 import { getTotalComments } from "../../utils/functions";
 import commentIcon from "../../assets/shared/icon-comments.svg";
 import UpvoteBtnRoadmap from "../shared/UpvoteBtnRoadmap";
+import { useNavigate } from "react-router-dom";
 
 const RoadmapCard = ({ feedback }) => {
+  const navigate = useNavigate();
   const checkStatusColor = (status) => {
     return status === "planned"
       ? "#F49F85"
@@ -48,14 +50,18 @@ const RoadmapCard = ({ feedback }) => {
         <StatusIcon color={checkStatusColor(feedback.status)}></StatusIcon>
         <StatusText>{capitaliseBasedOnStatus(feedback.status)}</StatusText>
       </StatusIconWrapper>
-      <Title>{feedback.title}</Title>
+      <Title onClick={() => navigate(`/feedback/details/${feedback._id}`)}>
+        {feedback.title}
+      </Title>
       <p className="text">{feedback.description}</p>
       <Tag>{feedback.category}</Tag>
       <RoadmapCardFooter>
         <UpvoteBtnRoadmap feedback={feedback} />
         <CommentsWrapper>
           <CommentsIcon src={commentIcon} />
-          <CommentsCount $comments={feedback.comments}>{4}</CommentsCount>
+          <CommentsCount $comments={feedback.comments}>
+            {getTotalComments(feedback)}
+          </CommentsCount>
         </CommentsWrapper>
       </RoadmapCardFooter>
     </RoadmapCardContainer>

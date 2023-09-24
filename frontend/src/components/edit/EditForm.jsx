@@ -21,7 +21,10 @@ import { FormInput } from "../../styles/auth/Auth.styled";
 import FormSelectDropdownCategory from "../shared/FormSelectDropdownCategory";
 import FormSelectDropdownStatus from "../shared/FormSelectDropdownStatus";
 import { FeedbackBtn } from "../../styles/shared/Shared.styled";
-import { editFeedback } from "../../features/feedback/feedbackSlice";
+import {
+  deleteFeedback,
+  editFeedback,
+} from "../../features/feedback/feedbackSlice";
 import iconEdit from "../../assets/shared/icon-edit-feedback.svg";
 
 const EditForm = ({ feedback }) => {
@@ -77,9 +80,10 @@ const EditForm = ({ feedback }) => {
   };
 
   // delete feedback
-  const deleteSingleFeedback = () => {
-    dispatch(deleteFeedback(feedback._id));
+  const deleteSingleFeedback = (e) => {
+    e.preventDefault();
 
+    dispatch(deleteFeedback(feedback._id));
     navigate("/");
   };
 
