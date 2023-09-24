@@ -6,9 +6,7 @@ import { getAllRoadmap } from "../features/feedback/feedbackSlice";
 import LoadingSpinner from "../components/shared/LoadingSpinner";
 import { motion } from "framer-motion";
 const Roadmap = () => {
-  const { roadmapFeedbacks, isLoading } = useSelector(
-    (state) => state.feedback
-  );
+  const { feedbacks, isLoading } = useSelector((state) => state.feedback);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllRoadmap());
@@ -20,8 +18,8 @@ const Roadmap = () => {
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       <div>
         <TopBar />
-        {roadmapFeedbacks && roadmapFeedbacks.length > 0 && (
-          <RoadmapBody feedbacks={roadmapFeedbacks} />
+        {feedbacks && feedbacks.length > 0 && (
+          <RoadmapBody feedbacks={feedbacks} />
         )}
       </div>
     </motion.div>

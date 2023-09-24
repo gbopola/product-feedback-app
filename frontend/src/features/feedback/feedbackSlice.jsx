@@ -5,7 +5,6 @@ const initialState = {
   feedback: [],
   feedbacks: [],
   filteredFeedbacks: [],
-  roadmapFeedbacks: [],
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -220,7 +219,7 @@ export const feedbackSlice = createSlice({
       .addCase(getAllRoadmap.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.roadmapFeedbacks = action.payload;
+        state.feedbacks = action.payload;
       })
       .addCase(getAllRoadmap.rejected, (state, action) => {
         state.isLoading = false;
@@ -233,7 +232,7 @@ export const feedbackSlice = createSlice({
       .addCase(editFeedback.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.feedbacks = state.feedbacks.map((feedback) =>
+        state.filteredFeedbacks = state.feedbacks.map((feedback) =>
           feedback._id === action.payload._id ? action.payload : feedback
         );
       })
@@ -293,9 +292,6 @@ export const feedbackSlice = createSlice({
           feedback._id === action.payload._id ? action.payload : feedback
         );
         state.feedback = action.payload;
-        state.roadmapFeedbacks = state.roadmapFeedbacks.map((feedback) =>
-          feedback._id === action.payload._id ? action.payload : feedback
-        );
       })
       .addCase(upvoteFeedback.rejected, (state, action) => {
         state.isError = true;

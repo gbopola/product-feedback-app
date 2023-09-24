@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   TopBarContainer,
   TopBarLeft,
@@ -31,7 +32,17 @@ const TopBar = ({ feedbacks }) => {
             Sort by : <span>{sortBy}</span>
             <TopBarIcon src={iconArrowDown} />
           </TopBarSort>
-          {isModal && <SelectDropdown />}
+          <AnimatePresence>
+            {isModal && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                <SelectDropdown />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </TopBarLeft>
       <AddFeedbackBtn />
