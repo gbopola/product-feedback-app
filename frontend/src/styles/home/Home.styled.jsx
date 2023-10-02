@@ -2,6 +2,8 @@ import { styled } from "styled-components";
 
 const HomeWrapper = styled.div`
   display: flex;
+  width: 1100px;
+  margin: 6rem auto;
 `;
 
 const HomeColumnOne = styled.div`

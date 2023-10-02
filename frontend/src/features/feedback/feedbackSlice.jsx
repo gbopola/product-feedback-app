@@ -273,6 +273,9 @@ export const feedbackSlice = createSlice({
       .addCase(deleteFeedback.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
+        state.filteredFeedbacks = state.filteredFeedbacks.filter(
+          (feedback) => feedback._id !== action.payload.id
+        );
         state.feedbacks = state.feedbacks.filter(
           (feedback) => feedback._id !== action.payload.id
         );

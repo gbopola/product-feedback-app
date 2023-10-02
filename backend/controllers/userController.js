@@ -12,7 +12,7 @@ const registerUser = asyncHandler(async (req, res) => {
   //   regex
   const specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
 
-  if (!name || !username || !email || !image || !password) {
+  if (!name || !username || !email || !password) {
     res.status(400);
     throw new Error("Add fields must be added");
   }
@@ -45,10 +45,14 @@ const registerUser = asyncHandler(async (req, res) => {
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
 
+  // get user avatar
+  const avatar = `https://api.multiavatar.com/${name}.png`;
+
   // Create user
   const user = await User.create({
     name,
     email,
+    avatar,
     username,
     image,
     password: hashedPassword,

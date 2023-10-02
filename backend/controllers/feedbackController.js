@@ -36,7 +36,18 @@ const getAllFeedback = asyncHandler(async (req, res) => {
 // @route   GET /api/feedback/:id
 // @access  Private
 const getSingleFeedback = asyncHandler(async (req, res) => {
-  const feedback = await Feedback.findById(req.params.id);
+  const feedback = await Feedback.findById(req.params.id).populate({
+    path: "comments",
+    populate: {
+      path: "user",
+      select: "name username avatar",
+    },
+  });
+
+  if (!feedback) {
+    res.status(404).json({ message: "Feedback not found" });
+    return;
+  }
 
   res.status(200).json(feedback);
 });
@@ -58,12 +69,6 @@ const updateFeedback = asyncHandler(async (req, res) => {
   if (!req.user) {
     res.status(401);
     throw new Error("User not found");
-  }
-
-  // Make sure the logged in user matches the feedback user
-  if (feedback.user.toString() !== req.user.id) {
-    res.status(401);
-    throw new Error("User not authorized");
   }
 
   const updatedFeedback = await Feedback.findByIdAndUpdate(
@@ -99,12 +104,6 @@ const deleteFeedback = asyncHandler(async (req, res) => {
     throw new Error("User not found");
   }
 
-  // Make sure the logged in user matches the feedback user
-  if (feedback.user.toString() !== req.user.id) {
-    res.status(401);
-    throw new Error("User not authorized");
-  }
-
   await feedback.remove();
 
   res.status(200).json({ id: req.params.id });
@@ -133,12 +132,6 @@ const addComment = asyncHandler(async (req, res) => {
     throw new Error("Comment must be added");
   }
 
-  // Make sure the logged in user matches the feedback user
-  if (feedback.user.toString() !== req.user.id) {
-    res.status(401);
-    throw new Error("User not authorized");
-  }
-
   const newComment = {
     user: req.user.id,
     comment,
@@ -150,7 +143,13 @@ const addComment = asyncHandler(async (req, res) => {
       $push: { comments: newComment },
     },
     { new: true }
-  );
+  ).populate({
+    path: "comments",
+    populate: {
+      path: "user",
+      select: "name username avatar",
+    },
+  });
 
   res.status(200).json(updatedFeedback);
 });
@@ -159,7 +158,13 @@ const addComment = asyncHandler(async (req, res) => {
 // @route   PUT /api/feedback/upvote/:id
 // @access  Private
 const upvoteFeedback = asyncHandler(async (req, res) => {
-  const feedback = await Feedback.findById(req.params.id);
+  const feedback = await Feedback.findById(req.params.id).populate({
+    path: "comments",
+    populate: {
+      path: "user",
+      select: "name username avatar",
+    },
+  });
 
   if (!feedback) {
     res.status(400);
@@ -170,12 +175,6 @@ const upvoteFeedback = asyncHandler(async (req, res) => {
   if (!req.user) {
     res.status(401);
     throw new Error("User not found");
-  }
-
-  // Make sure the logged in user matches the feedback user
-  if (feedback.user.toString() !== req.user.id) {
-    res.status(401);
-    throw new Error("User not authorized");
   }
 
   const userIndex = feedback.upvotes.indexOf(req.user.id);

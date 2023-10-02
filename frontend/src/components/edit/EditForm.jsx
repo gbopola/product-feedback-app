@@ -26,6 +26,8 @@ import {
   editFeedback,
 } from "../../features/feedback/feedbackSlice";
 import iconEdit from "../../assets/shared/icon-edit-feedback.svg";
+import { AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 const EditForm = ({ feedback }) => {
   const [formData, setFormData] = useState({
@@ -145,12 +147,20 @@ const EditForm = ({ feedback }) => {
             onClick={() => setOpenCategory(!isOpenCategory)}
           />
           <FormIconDown src={arrowDown} />
-          {isOpenCategory ? (
-            <FormSelectDropdownCategory
-              category={category}
-              setCategory={setCategory}
-            />
-          ) : null}
+          <AnimatePresence>
+            {isOpenCategory && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                <FormSelectDropdownCategory
+                  category={category}
+                  setCategory={setCategory}
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
         <FormLabelTitle>Update Status</FormLabelTitle>
@@ -164,9 +174,17 @@ const EditForm = ({ feedback }) => {
             onClick={() => setOpenStatus(!isOpenStatus)}
           />
           <FormIconDown src={arrowDown} />
-          {isOpenStatus ? (
-            <FormSelectDropdownStatus updateStatus={updateStatus} />
-          ) : null}
+          <AnimatePresence>
+            {isOpenStatus && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                <FormSelectDropdownStatus updateStatus={updateStatus} />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
         <FormLabelTitle>Feedback Detail</FormLabelTitle>

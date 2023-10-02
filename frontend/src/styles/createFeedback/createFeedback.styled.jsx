@@ -103,6 +103,9 @@ const FormErrorMessage = styled.p`
   display: block;
   margin-bottom: 1rem;
   margin-top: ${(props) => (props.$firstlabel ? "0.35rem" : "")};
+  &.text-start {
+    text-align: start;
+  }
 `;
 
 export {

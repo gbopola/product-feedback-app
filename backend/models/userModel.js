@@ -5,14 +5,14 @@ const userSchema = mongoose.Schema(
       type: String,
       required: [true, "Please add a name"],
     },
+    avatar: {
+      type: String,
+      required: [true, "Please add an avatar"],
+    },
     email: {
       type: String,
       required: [true, "Please add an email address"],
       unique: true,
-    },
-    image: {
-      type: String,
-      required: [true, "Please add an image"],
     },
     username: {
       type: String,

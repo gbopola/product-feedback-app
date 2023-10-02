@@ -10,16 +10,22 @@ import {
   FormLink,
   FormLinkBold,
 } from "../styles/auth/Auth.styled";
-import { register } from "../features/auth/authSlice";
+import { login, register, reset } from "../features/auth/authSlice";
+import { toast } from "react-toastify";
 import { motion } from "framer-motion";
+import { FormErrorMessage } from "../styles/createFeedback/createFeedback.styled";
 
-const Register = () => {
+const Login = () => {
   const [formData, setFormData] = useState({
+    name: "",
+    username: "",
     email: "",
     password: "",
   });
 
-  const { email, password } = formData;
+  const [error, setError] = useState(false);
+
+  const { name, username, email, password } = formData;
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -29,14 +35,23 @@ const Register = () => {
   );
 
   useEffect(() => {
-    if (isSuccess || user) {
+    // navigate to login
+    if (user) {
       navigate("/");
     }
-  }, [user, isError, isSuccess, message, navigate, isLoading, dispatch]);
+
+    if (isError) {
+      toast.error(`${message}`);
+    }
+  }, [navigate, user, isError, message]);
 
   //   submit form to database
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (email === "" || password === "") {
+      return setError(true);
+    }
 
     dispatch(register(formData));
   };
@@ -51,32 +66,79 @@ const Register = () => {
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       <FormWrapper onSubmit={handleSubmit}>
-        <FormTitle>Sign in to your account</FormTitle>
-        <p className="form-text">Log in to gain access to the feeback board</p>
+        <FormTitle>Register your account</FormTitle>
+        <p className="form-text">
+          Sign up to gain access to the feedback board
+        </p>
+        <FormLabel>Full Name</FormLabel>
+        <FormInput
+          id="name"
+          type="text"
+          value={name}
+          $title={name}
+          $error={error}
+          name="name"
+          onChange={onChange}
+        />
+        {name === "" && error && (
+          <FormErrorMessage className="text-start" $firstlabel={true}>
+            Can't be empty
+          </FormErrorMessage>
+        )}
+        <FormLabel>Username</FormLabel>
+        <FormInput
+          id="username"
+          type="text"
+          value={username}
+          $title={username}
+          $error={error}
+          name="username"
+          onChange={onChange}
+        />
+        {username === "" && error && (
+          <FormErrorMessage className="text-start" $firstlabel={true}>
+            Can't be empty
+          </FormErrorMessage>
+        )}
         <FormLabel>Email Address</FormLabel>
         <FormInput
           id="email"
-          name="email"
-          value={email}
           type="text"
+          value={email}
+          $title={email}
+          $error={error}
+          name="email"
           onChange={onChange}
         />
+        {email === "" && error && (
+          <FormErrorMessage className="text-start" $firstlabel={true}>
+            Can't be empty
+          </FormErrorMessage>
+        )}
+
         <FormLabel>Password</FormLabel>
         <FormInput
           id="password"
           name="password"
           value={password}
-          type="text"
+          $title={password}
+          $error={error}
+          type="password"
           onChange={onChange}
         />
-        <FormBtn type="submit">Log in</FormBtn>
+        {password === "" && error && (
+          <FormErrorMessage className="text-start" $firstlabel={true}>
+            Can't be empty
+          </FormErrorMessage>
+        )}
+        <FormBtn type="submit">Sign Up</FormBtn>
         <FormLink>
-          Don't have an account?{" "}
-          <FormLinkBold to="/register">Register</FormLinkBold>
+          Already have an account?{" "}
+          <FormLinkBold to="/login">Login</FormLinkBold>
         </FormLink>
       </FormWrapper>
     </motion.div>
   );
 };
 
-export default Register;
+export default Login;

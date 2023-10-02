@@ -10,7 +10,7 @@ import {
   FormIconDown,
 } from "../styles/createFeedback/createFeedback.styled";
 import { FeedbackBtn } from "../styles/shared/Shared.styled";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   CreateFeedbackWrapper,
   FormWrapper,
@@ -105,12 +105,20 @@ const CreateFeedback = () => {
               onClick={() => setOpen(!isOpen)}
             />
             <FormIconDown src={arrowDown} />
-            {isOpen && (
-              <FormSelectDropdown
-                category={category}
-                setCategory={setCategory}
-              />
-            )}
+            <AnimatePresence>
+              {isOpen && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                >
+                  <FormSelectDropdown
+                    category={category}
+                    setCategory={setCategory}
+                  />
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
           <FormLabelTitle>Feedback Detail</FormLabelTitle>

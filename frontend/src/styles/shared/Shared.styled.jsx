@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+const Wrapper = styled.div`
+  width: 1100px;
+  margin: 6rem auto;
+`;
 const FeedbackBtn = styled.button`
   background: #ad1fea;
   padding: 0.75rem 1.5rem;
@@ -89,7 +93,7 @@ const Spinner = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 80vh;
   .loader {
     width: 60px;
     height: 60px;
@@ -112,6 +116,7 @@ const Spinner = styled.div`
 `;
 
 export {
+  Wrapper,
   FeedbackBtn,
   FeedbackBtnIcon,
   Title,

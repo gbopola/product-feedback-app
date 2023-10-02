@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { getAllRoadmap } from "../features/feedback/feedbackSlice";
 import LoadingSpinner from "../components/shared/LoadingSpinner";
 import { motion } from "framer-motion";
+import { Wrapper } from "../styles/shared/Shared.styled";
 const Roadmap = () => {
   const { feedbacks, isLoading } = useSelector((state) => state.feedback);
   const dispatch = useDispatch();
@@ -16,12 +17,12 @@ const Roadmap = () => {
     <LoadingSpinner />
   ) : (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-      <div>
+      <Wrapper>
         <TopBar />
         {feedbacks && feedbacks.length > 0 && (
           <RoadmapBody feedbacks={feedbacks} />
         )}
-      </div>
+      </Wrapper>
     </motion.div>
   );
 };

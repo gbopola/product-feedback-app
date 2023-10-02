@@ -10,7 +10,10 @@ const DetailsBody = ({ feedback }) => {
     feedback.comments &&
     feedback.comments.length > 0 && (
       <DetailsBodyWrapper>
-        <Title>{feedback.comments.length} Comments</Title>
+        <Title>
+          {feedback.comments.length} Comment
+          {feedback.comments.length > 1 && "s"}
+        </Title>
         {feedback.comments.map((comment) => (
           <CommentCard comment={comment} />
         ))}
