@@ -24,3 +24,8 @@ export const countFeedback = (feedbacks, status) => {
 
   return count;
 };
+
+// trim url whitespace
+export const trimAvatarUrl = (url) => {
+  return url.replace(/\s/g, "");
+};

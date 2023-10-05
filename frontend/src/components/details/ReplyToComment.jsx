@@ -17,7 +17,7 @@ const ReplyToComment = ({ comment }) => {
         comment: commentText,
         feedbackId: feedback._id,
         commentId: comment._id,
-        replyingToUserId: comment.user,
+        replyingToUserId: comment.user._id,
       })
     );
   };

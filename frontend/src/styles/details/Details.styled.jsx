@@ -109,6 +109,11 @@ const CommentFormWrapper = styled.div`
   }
 `;
 
+const ReplyingToUsername = styled.span`
+  color: #ad1fea;
+  font-weight: bold;
+`;
+
 export {
   DetailsHeader,
   DetailsBodyWrapper,
@@ -127,4 +132,5 @@ export {
   CommentReplyContainer,
   RepliesContainer,
   CommentFormWrapper,
+  ReplyingToUsername,
 };

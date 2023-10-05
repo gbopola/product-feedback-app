@@ -127,7 +127,7 @@ const addComment = async ({ comment, feedbackId }, token) => {
 };
 // reply to comment
 const replyToComment = async (
-  { comment, feedbackId, commentId, replyingtoUserId },
+  { comment, feedbackId, commentId, replyingToUserId },
   token
 ) => {
   const config = {
@@ -137,7 +137,7 @@ const replyToComment = async (
   };
 
   const response = await axios.put(
-    API_URL + `/reply/${feedbackId}/${commentId}/${replyingtoUserId}`,
+    API_URL + `/reply/${feedbackId}/${commentId}/${replyingToUserId}`,
     { comment },
     config
   );

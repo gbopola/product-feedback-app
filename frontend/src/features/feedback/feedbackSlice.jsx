@@ -257,6 +257,9 @@ export const feedbackSlice = createSlice({
         state.filteredFeedbacks = state.feedbacks.map((feedback) =>
           feedback._id === action.payload._id ? action.payload : feedback
         );
+        state.feedbacks = state.feedbacks.map((feedback) =>
+          feedback._id === action.payload._id ? action.payload : feedback
+        );
       })
       .addCase(editFeedback.rejected, (state, action) => {
         state.isLoading = false;

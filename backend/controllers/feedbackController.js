@@ -50,6 +50,13 @@ const getSingleFeedback = asyncHandler(async (req, res) => {
         path: "user",
         select: "name username avatar",
       },
+    })
+    .populate({
+      path: "comments.replies",
+      populate: {
+        path: "replyingTo",
+        select: "username",
+      },
     });
 
   if (!feedback) {
@@ -165,6 +172,13 @@ const addComment = asyncHandler(async (req, res) => {
         path: "user",
         select: "name username avatar",
       },
+    })
+    .populate({
+      path: "comments.replies",
+      populate: {
+        path: "replyingTo",
+        select: "username",
+      },
     });
 
   res.status(200).json(updatedFeedback);
@@ -187,6 +201,13 @@ const upvoteFeedback = asyncHandler(async (req, res) => {
       populate: {
         path: "user",
         select: "name username avatar",
+      },
+    })
+    .populate({
+      path: "comments.replies",
+      populate: {
+        path: "replyingTo",
+        select: "username",
       },
     });
 
@@ -234,21 +255,8 @@ const replyToComment = asyncHandler(async (req, res) => {
 
   const { comment } = req.body;
 
-  const feedback = await Feedback.findById(feedbackId)
-    .populate({
-      path: "comments",
-      populate: {
-        path: "user",
-        select: "name username avatar",
-      },
-    })
-    .populate({
-      path: "comments.replies",
-      populate: {
-        path: "user",
-        select: "name username avatar",
-      },
-    });
+  const feedback = await Feedback.findById(feedbackId);
+
   if (!feedback) {
     throw new Error("Feedback not found");
   }
@@ -269,7 +277,30 @@ const replyToComment = asyncHandler(async (req, res) => {
 
   await feedback.save();
 
-  res.status(200).json(feedback);
+  const populatedFeedback = await Feedback.findById(feedbackId)
+    .populate({
+      path: "comments",
+      populate: {
+        path: "user",
+        select: "name username avatar",
+      },
+    })
+    .populate({
+      path: "comments.replies",
+      populate: {
+        path: "user",
+        select: "name username avatar",
+      },
+    })
+    .populate({
+      path: "comments.replies",
+      populate: {
+        path: "replyingTo",
+        select: "username",
+      },
+    });
+
+  res.status(200).json(populatedFeedback);
 });
 
 module.exports = {

@@ -6,7 +6,6 @@ import CommentCard from "./CommentCard";
 import { getTotalComments } from "../../utils/functions";
 
 const DetailsBody = ({ feedback }) => {
-  console.log(feedback.comments);
   return (
     feedback &&
     feedback.comments &&
@@ -16,8 +15,8 @@ const DetailsBody = ({ feedback }) => {
           {getTotalComments(feedback)} Comment
           {feedback.comments.length > 1 && "s"}
         </Title>
-        {feedback.comments.map((comment) => (
-          <CommentCard comment={comment} />
+        {feedback.comments.map((comment, index) => (
+          <CommentCard comment={comment} index={index} />
         ))}
       </DetailsBodyWrapper>
     )

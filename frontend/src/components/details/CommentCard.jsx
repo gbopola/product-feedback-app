@@ -15,12 +15,9 @@ import {
 
 import ReplyToComment from "./ReplyToComment";
 import CommentReplies from "./CommentReplies";
-const CommentCard = ({ comment }) => {
+import { trimAvatarUrl } from "../../utils/functions";
+const CommentCard = ({ comment, index }) => {
   const [isReplying, setReply] = useState(false);
-
-  const trimAvatarUrl = (url) => {
-    return url.replace(/\s/g, "");
-  };
 
   return (
     <CommentsWrapper>
