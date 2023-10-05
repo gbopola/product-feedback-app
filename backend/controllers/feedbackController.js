@@ -36,13 +36,21 @@ const getAllFeedback = asyncHandler(async (req, res) => {
 // @route   GET /api/feedback/:id
 // @access  Private
 const getSingleFeedback = asyncHandler(async (req, res) => {
-  const feedback = await Feedback.findById(req.params.id).populate({
-    path: "comments",
-    populate: {
-      path: "user",
-      select: "name username avatar",
-    },
-  });
+  const feedback = await Feedback.findById(req.params.id)
+    .populate({
+      path: "comments",
+      populate: {
+        path: "user",
+        select: "name username avatar",
+      },
+    })
+    .populate({
+      path: "comments.replies",
+      populate: {
+        path: "user",
+        select: "name username avatar",
+      },
+    });
 
   if (!feedback) {
     res.status(404).json({ message: "Feedback not found" });
@@ -143,13 +151,21 @@ const addComment = asyncHandler(async (req, res) => {
       $push: { comments: newComment },
     },
     { new: true }
-  ).populate({
-    path: "comments",
-    populate: {
-      path: "user",
-      select: "name username avatar",
-    },
-  });
+  )
+    .populate({
+      path: "comments",
+      populate: {
+        path: "user",
+        select: "name username avatar",
+      },
+    })
+    .populate({
+      path: "comments.replies",
+      populate: {
+        path: "user",
+        select: "name username avatar",
+      },
+    });
 
   res.status(200).json(updatedFeedback);
 });
@@ -158,13 +174,21 @@ const addComment = asyncHandler(async (req, res) => {
 // @route   PUT /api/feedback/upvote/:id
 // @access  Private
 const upvoteFeedback = asyncHandler(async (req, res) => {
-  const feedback = await Feedback.findById(req.params.id).populate({
-    path: "comments",
-    populate: {
-      path: "user",
-      select: "name username avatar",
-    },
-  });
+  const feedback = await Feedback.findById(req.params.id)
+    .populate({
+      path: "comments",
+      populate: {
+        path: "user",
+        select: "name username avatar",
+      },
+    })
+    .populate({
+      path: "comments.replies",
+      populate: {
+        path: "user",
+        select: "name username avatar",
+      },
+    });
 
   if (!feedback) {
     res.status(400);
@@ -208,9 +232,23 @@ const getAllRoadmap = asyncHandler(async (req, res) => {
 const replyToComment = asyncHandler(async (req, res) => {
   const { feedbackId, commentId, replyingToUserId } = req.params;
 
-  const { content } = req.body;
+  const { comment } = req.body;
 
-  const feedback = await Feedback.findById(feedbackId);
+  const feedback = await Feedback.findById(feedbackId)
+    .populate({
+      path: "comments",
+      populate: {
+        path: "user",
+        select: "name username avatar",
+      },
+    })
+    .populate({
+      path: "comments.replies",
+      populate: {
+        path: "user",
+        select: "name username avatar",
+      },
+    });
   if (!feedback) {
     throw new Error("Feedback not found");
   }
@@ -225,7 +263,7 @@ const replyToComment = asyncHandler(async (req, res) => {
 
   feedback.comments[commentIndex].replies.push({
     user: req.user.id,
-    content,
+    comment,
     replyingTo: replyingToUserId,
   });
 

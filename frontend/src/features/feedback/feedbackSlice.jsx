@@ -167,6 +167,28 @@ export const addComment = createAsyncThunk(
   }
 );
 
+// reply to comment
+export const replyToComment = createAsyncThunk(
+  "feedbacks/replyToComment",
+  async ({ comment, feedbackId, commentId, replyingToUserId }, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.user.token;
+      return await feedbackService.replyToComment(
+        { comment, feedbackId, commentId, replyingToUserId },
+        token
+      );
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 export const feedbackSlice = createSlice({
   name: "feedback",
   initialState,
@@ -250,6 +272,19 @@ export const feedbackSlice = createSlice({
         state.feedback = action.payload;
       })
       .addCase(addComment.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(replyToComment.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(replyToComment.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.feedback = action.payload;
+      })
+      .addCase(replyToComment.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;

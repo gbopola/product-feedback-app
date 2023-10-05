@@ -125,6 +125,25 @@ const addComment = async ({ comment, feedbackId }, token) => {
 
   return response.data;
 };
+// reply to comment
+const replyToComment = async (
+  { comment, feedbackId, commentId, replyingtoUserId },
+  token
+) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const response = await axios.put(
+    API_URL + `/reply/${feedbackId}/${commentId}/${replyingtoUserId}`,
+    { comment },
+    config
+  );
+
+  return response.data;
+};
 
 const feedbackService = {
   createFeedback,
@@ -135,6 +154,7 @@ const feedbackService = {
   editFeedback,
   getAllRoadmap,
   addComment,
+  replyToComment,
 };
 
 export default feedbackService;

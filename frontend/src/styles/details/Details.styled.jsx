@@ -25,8 +25,8 @@ const DetailCommentsWrapper = styled.div`
 `;
 
 const CommentAvatar = styled.div`
-  background: url(${(props) => props.avatar}) center center/cover;
-  width: 40px;
+  background: url(${(props) => props.$avatar}) center center/cover;
+  width: 44px;
   height: 40px;
   border-radius: 50%;
 `;

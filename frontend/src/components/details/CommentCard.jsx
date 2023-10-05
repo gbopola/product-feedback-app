@@ -18,10 +18,14 @@ import CommentReplies from "./CommentReplies";
 const CommentCard = ({ comment }) => {
   const [isReplying, setReply] = useState(false);
 
+  const trimAvatarUrl = (url) => {
+    return url.replace(/\s/g, "");
+  };
+
   return (
     <CommentsWrapper>
       <DetailCommentsWrapper>
-        <CommentAvatar avatar={comment.user.avatar} />
+        <CommentAvatar $avatar={trimAvatarUrl(comment.user.avatar)} />
         <CommentContent>
           <CommentContentHeader>
             <ContentHeaderLeft>
@@ -31,11 +35,12 @@ const CommentCard = ({ comment }) => {
             <ReplyBtn onClick={() => setReply(!isReplying)}>Reply</ReplyBtn>
           </CommentContentHeader>
           <CommentText>{comment.comment}</CommentText>
-          {isReplying && <ReplyToComment />}
+          {isReplying && <ReplyToComment comment={comment} />}
         </CommentContent>
       </DetailCommentsWrapper>
       {comment.replies.length > 0 &&
-        comment.replies.map(() => <CommentReplies replies={comment.replies} />)}
+        comment.replies.map((comment) => <CommentReplies comment={comment} />)}
+      {/* <CommentReplies comment={comment} /> */}
     </CommentsWrapper>
   );
 };
