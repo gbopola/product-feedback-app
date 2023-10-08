@@ -20,7 +20,7 @@ const CommentCard = ({ comment, index }) => {
   const [isReplying, setReply] = useState(false);
 
   return (
-    <CommentsWrapper>
+    <CommentsWrapper $index={index}>
       <DetailCommentsWrapper>
         <CommentAvatar $avatar={trimAvatarUrl(comment.user.avatar)} />
         <CommentContent>
