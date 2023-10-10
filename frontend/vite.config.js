@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://product-feedback-app-inhn.onrender.com",
+        target: "http://localhost:5000",
         secure: false,
       },
     },
