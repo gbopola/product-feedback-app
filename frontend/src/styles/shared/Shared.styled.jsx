@@ -93,11 +93,11 @@ const Spinner = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80vh;
+  height: 100vh;
   .loader {
-    width: 60px;
-    height: 60px;
-    border: 6px solid #fff;
+    width: 100px;
+    height: 100px;
+    border: 8px solid #fff;
     border-bottom-color: #ad1fea;
     border-radius: 50%;
     display: inline-block;

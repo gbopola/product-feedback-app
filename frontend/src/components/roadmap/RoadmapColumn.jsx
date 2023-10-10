@@ -14,14 +14,16 @@ const RoadmapColumn = ({ status, feedbacks }) => {
         {roadmap.map(
           (data) =>
             data.title === status.toLowerCase() && (
-              <p className="text">{data.text}</p>
+              <p key={data.title} className="text">
+                {data.text}
+              </p>
             )
         )}
       </RoadmapHeader>
       {feedbacks.map(
         (data) =>
           data.status === status.toLowerCase() && (
-            <RoadmapCard feedback={data} />
+            <RoadmapCard feedback={data} key={data._id} />
           )
       )}
     </div>

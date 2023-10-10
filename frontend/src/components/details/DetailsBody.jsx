@@ -1,7 +1,6 @@
 import React from "react";
 import { DetailsBodyWrapper } from "../../styles/details/Details.styled";
 import { Title } from "../../styles/shared/Shared.styled";
-import { useSelector } from "react-redux";
 import CommentCard from "./CommentCard";
 import { getTotalComments } from "../../utils/functions";
 
@@ -16,7 +15,7 @@ const DetailsBody = ({ feedback }) => {
           {feedback.comments.length > 1 && "s"}
         </Title>
         {feedback.comments.map((comment, index) => (
-          <CommentCard comment={comment} index={index} />
+          <CommentCard comment={comment} index={index} key={comment._id} />
         ))}
       </DetailsBodyWrapper>
     )

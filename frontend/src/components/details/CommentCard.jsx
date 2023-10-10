@@ -16,11 +16,14 @@ import {
 import ReplyToComment from "./ReplyToComment";
 import CommentReplies from "./CommentReplies";
 import { trimAvatarUrl } from "../../utils/functions";
+import { useSelector } from "react-redux";
 const CommentCard = ({ comment, index }) => {
   const [isReplying, setReply] = useState(false);
 
+  const { feedback } = useSelector((state) => state.feedback);
+
   return (
-    <CommentsWrapper $index={index}>
+    <CommentsWrapper $index={index} $comments={feedback.comments}>
       <DetailCommentsWrapper>
         <CommentAvatar $avatar={trimAvatarUrl(comment.user.avatar)} />
         <CommentContent>
@@ -36,7 +39,9 @@ const CommentCard = ({ comment, index }) => {
         </CommentContent>
       </DetailCommentsWrapper>
       {comment.replies.length > 0 &&
-        comment.replies.map((comment) => <CommentReplies comment={comment} />)}
+        comment.replies.map((comment) => (
+          <CommentReplies comment={comment} key={comment._id} />
+        ))}
       {/* <CommentReplies comment={comment} /> */}
     </CommentsWrapper>
   );

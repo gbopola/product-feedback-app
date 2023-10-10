@@ -29,3 +29,8 @@ export const countFeedback = (feedbacks, status) => {
 export const trimAvatarUrl = (url) => {
   return url.replace(/\s/g, "");
 };
+
+// check if user has upvoted
+export const checkIfUpvoted = (user, upvotes) => {
+  return upvotes.includes(user);
+};

@@ -21,7 +21,7 @@ const CommentReplies = ({ comment }) => {
 
   return (
     <RepliesContainer>
-      <CommentsWrapper isReply>
+      <CommentsWrapper $isReply="true">
         <DetailCommentsWrapper>
           <CommentAvatar
             $avatar={comment.user.avatar && trimAvatarUrl(comment.user.avatar)}

@@ -12,11 +12,7 @@ import FeedbackEmpty from "../components/home/FeedbackEmpty";
 import FeedbackBody from "../components/home/FeedbackBody";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import {
-  getAllRoadmap,
-  getFeedbacks,
-  reset,
-} from "../features/feedback/feedbackSlice";
+import { getFeedbacks } from "../features/feedback/feedbackSlice";
 import LoadingSpinner from "../components/shared/LoadingSpinner";
 
 const Home = () => {
@@ -40,6 +36,7 @@ const Home = () => {
   ) : (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       <HomeWrapper>
+        {/* <Navbar /> */}
         <HomeColumnOne>
           <Banner />
           <Tags />
@@ -47,8 +44,12 @@ const Home = () => {
         </HomeColumnOne>
         <HomeColumnTwo>
           <TopBar feedbacks={filteredFeedbacks} />
-          {feedbacks.length === 0 && <FeedbackEmpty />}
-          <FeedbackBody feedbacks={filteredFeedbacks} />
+          {feedbacks.filter((feedback) => feedback.status === "suggestion")
+            .length === 0 ? (
+            <FeedbackEmpty />
+          ) : (
+            <FeedbackBody feedbacks={filteredFeedbacks} />
+          )}
         </HomeColumnTwo>
       </HomeWrapper>
     </motion.div>

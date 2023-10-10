@@ -1,8 +1,15 @@
 import styled from "styled-components";
 import { Title } from "../shared/Shared.styled";
 
+const shouldApplyBorderBottom = (comments, index, isReply) => {
+  return !isReply && index !== comments.length - 1;
+};
+
 const CommentsWrapper = styled.div`
-  border-bottom: ${(props) => (!props.isReply ? "1px solid #e2e4ec" : "")};
+  border-bottom: ${(props) =>
+    shouldApplyBorderBottom(props.$comments, props.$index, props.$isReply)
+      ? "1px solid #e2e4ec"
+      : "none"};
   margin-bottom: 1.75rem;
 `;
 const DetailsBodyWrapper = styled.div`

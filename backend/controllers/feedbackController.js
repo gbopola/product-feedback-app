@@ -1,6 +1,5 @@
 const asyncHandler = require("express-async-handler");
 const Feedback = require("../models/feedbackModel");
-const User = require("../models/userModel");
 
 // @desc    Create feedback
 // @route   POST /api/feedback/create

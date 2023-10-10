@@ -7,6 +7,11 @@ const TagsWrapper = styled.div`
   margin-top: 1.5rem;
   padding: 1.5rem;
   border-radius: 10px;
+
+  @media (max-width: 870px) {
+    margin: 0;
+    height: 100%;
+  }
 `;
 
 const Tag = styled.button`

@@ -5,21 +5,26 @@ import {
   FeedbackUpvoteWrapper,
 } from "../../styles/home/FeedbackCard";
 import upvoteIcon from "../../assets/shared/icon-arrow-up.svg";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { upvoteFeedback } from "../../features/feedback/feedbackSlice";
+import { checkIfUpvoted } from "../../utils/functions";
 const UpvoteBtnRoadmap = ({ feedback }) => {
+  const { user } = useSelector((state) => state.auth);
+
   const dispatch = useDispatch();
   return (
     <FeedbackUpvoteWrapper
-      className={feedback.upvotes.length !== 0 ? "active flex" : "flex"}
+      className={
+        checkIfUpvoted(user._id, feedback.upvotes) ? "active flex" : "flex"
+      }
       onClick={() => dispatch(upvoteFeedback(feedback._id))}
     >
       <FeedbackUpvoteIcon
-        className={feedback.upvotes.length !== 0 && "active"}
+        className={checkIfUpvoted(user._id, feedback.upvotes) && "active"}
         src={upvoteIcon}
       />
       <FeedbackUpvoteCount
-        className={feedback.upvotes.length !== 0 && "active"}
+        className={checkIfUpvoted(user._id, feedback.upvotes) && "active"}
       >
         {feedback.upvotes.length === 0 ? 0 : feedback.upvotes.length}
       </FeedbackUpvoteCount>

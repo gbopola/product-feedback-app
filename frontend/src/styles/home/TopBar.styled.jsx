@@ -7,6 +7,9 @@ const TopBarContainer = styled.div`
   padding: 0.85rem 0.85rem 0.85rem 1.25rem;
   background: #373f68;
   border-radius: 10px;
+  @media (max-width: 870px) {
+    margin: 0;
+  }
 `;
 
 const TopBarLeft = styled.div`

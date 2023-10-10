@@ -66,6 +66,13 @@ const CreateFeedback = () => {
     });
   };
 
+  // return to homepage
+  const returnToHome = (e) => {
+    e.preventDefault();
+
+    navigate("/");
+  };
+
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       <CreateFeedbackWrapper>
@@ -138,7 +145,10 @@ const CreateFeedback = () => {
           )}
 
           <ButtonGroup>
-            <FeedbackBtn onClick={() => navigate("/")} className="btn-cancel">
+            <FeedbackBtn
+              onClick={(e) => returnToHome(e)}
+              className="btn-cancel"
+            >
               Cancel
             </FeedbackBtn>
             <FeedbackBtn onClick={(e) => handleClick(e)}>
