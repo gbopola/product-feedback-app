@@ -8,13 +8,13 @@ connectDB();
 
 const app = express();
 
-// Serve static files from the "public" directory in the frontend folder
+// Serve static files from the index.html
 app.use(express.static(path.join(__dirname, "../frontend/index.html")));
 
-// Handle all other requests by serving the index.html for your frontend
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend/index.html"));
-});
+// // Handle all other requests by serving the index.html for your frontend
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "../frontend/index.html"));
+// });
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
