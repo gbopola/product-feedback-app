@@ -19,26 +19,22 @@ const registerUser = asyncHandler(async (req, res) => {
 
   //   validation checks
   if (password.length < 8) {
-    res.status(400);
-    throw new Error("Password must be at least 8 characters");
+    return res.status(400).send("Password must be at least 8 characters");
   }
 
   if (password.length > 64) {
-    res.status(400);
-    throw new Error("Password must be 64 characters or less");
+    return res.status(400).send("Password must be 64 characters or less");
   }
 
   if (!specialChars.test(password)) {
-    res.status(400);
-    throw new Error("Password must contain a special character");
+    return res.status(400).send("Password must contain a special character");
   }
 
   //   // Check if user exists
   const userExists = await User.findOne({ email });
 
   if (userExists) {
-    res.status(400);
-    throw new Error("User already exists");
+    return res.status(400).send("User already exists");
   }
 
   // Hash password
@@ -67,8 +63,7 @@ const registerUser = asyncHandler(async (req, res) => {
       token: generateToken(user._id),
     });
   } else {
-    res.status(400);
-    throw new Error("Invalid user data");
+    return res.status(400).send("Invalid user data");
   }
 });
 
@@ -90,8 +85,7 @@ const loginUser = asyncHandler(async (req, res) => {
       token,
     });
   } else {
-    res.status(400);
-    throw new Error("Invalid credentials");
+    res.status(400).send("Invalid credentials");
   }
 });
 

@@ -10,7 +10,7 @@ import {
   FormLink,
   FormLinkBold,
 } from "../styles/auth/Auth.styled";
-import { register } from "../features/auth/authSlice";
+import { register, reset } from "../features/auth/authSlice";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 import { FormErrorMessage } from "../styles/createFeedback/createFeedback.styled";
@@ -42,6 +42,10 @@ const Login = () => {
 
     if (isError) {
       toast.error(`${message}`);
+    }
+
+    if (!user) {
+      dispatch(reset());
     }
   }, [navigate, user, isError, message]);
 
