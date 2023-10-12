@@ -9,11 +9,11 @@ connectDB();
 const app = express();
 
 // Serve static files from the "public" directory in the frontend folder
-app.use(express.static(path.join(__dirname, "frontend", "public")));
+app.use(express.static(path.join(__dirname, "../frontend/public")));
 
 // Handle all other requests by serving the index.html for your frontend
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "frontend", "public", "index.html"));
+  res.sendFile(path.join(__dirname, "../frontend/public/index.html"));
 });
 
 app.use(express.json());
