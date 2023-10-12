@@ -214,6 +214,7 @@ export const feedbackSlice = createSlice({
       .addCase(createFeedback.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
+        state.feedbacks = action.payload;
         state.filteredFeedbacks.push(action.payload);
       })
       .addCase(createFeedback.rejected, (state, action) => {
