@@ -17,8 +17,8 @@ import { FormErrorMessage } from "../styles/createFeedback/createFeedback.styled
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    email: "testuser@gmail.com",
-    password: "TestUser123@",
+    email: "testuser@email.com",
+    password: "testuser123@",
   });
 
   const [error, setError] = useState(false);
