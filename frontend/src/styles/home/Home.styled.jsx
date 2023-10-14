@@ -3,14 +3,25 @@ import {
   FeedbackCardContainer,
   FeedbackCardContent,
   FeedbackCardWrapper,
+  FeedbackMobileWrapper,
   FeedbackUpvoteWrapper,
 } from "./FeedbackCard";
 import { CommentsWrapper, Title } from "../shared/Shared.styled";
+import {
+  FeedbackEmptyTitle,
+  FeedbackEmptyWrapper,
+} from "./FeedbackEmpty.styled";
 
 const HomeWrapper = styled.div`
   display: flex;
   width: 1100px;
   margin: 6rem auto;
+
+  ${CommentsWrapper} {
+    &.mobile-comment-wrapper {
+      display: none;
+    }
+  }
 
   ${FeedbackUpvoteWrapper} {
     &#mobile-upvote {
@@ -30,6 +41,25 @@ const HomeWrapper = styled.div`
     margin: 0;
     padding: 0;
 
+    ${FeedbackEmptyWrapper} {
+      margin: 1.25rem 1rem;
+      
+      padding: 8rem 2rem;
+
+      p {
+        font-size: 13px;
+        margin-bottom: 1rem;
+      }
+
+      span {
+        display: inline;
+      }
+    }
+
+    ${FeedbackEmptyTitle} {
+      font-size: 18px;
+    
+
     ${FeedbackCardContainer} {
       margin: 1.5rem 1rem;
     }
@@ -44,12 +74,20 @@ const HomeWrapper = styled.div`
       font-size: 13px;
     }
 
-    ${FeedbackCardContent} {
-      margin-left: 0;
+    ${FeedbackMobileWrapper} {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      align-items: center;
+      margin-top: 1.25rem;
+
+      ${CommentsWrapper} {
+        font-size: 13px;
+      }
     }
 
-    ${CommentsWrapper} {
-      display: none;
+    ${FeedbackCardContent} {
+      margin-left: 0;
     }
 
     ${FeedbackUpvoteWrapper} {

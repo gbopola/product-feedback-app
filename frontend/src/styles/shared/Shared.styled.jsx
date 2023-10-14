@@ -14,6 +14,10 @@ const FeedbackBtn = styled.button`
   font-weight: bold;
   cursor: pointer;
   transition: 0.2s;
+
+  @media (max-width: 740px) {
+    font-size: 13px;
+  }
   &:hover {
     background: #c75af6;
   }

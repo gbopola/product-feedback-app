@@ -45,6 +45,9 @@ const TopBarSort = styled.p`
   color: #f2f4fe;
   opacity: 75%;
   cursor: pointer;
+  @media (max-width: 740px) {
+    font-size: 13px;
+  }
 `;
 
 const TopBarIcon = styled.img`

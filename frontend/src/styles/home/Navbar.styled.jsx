@@ -22,6 +22,8 @@ const NavbarHeader = styled.h3`
   color: #fff;
 `;
 const NavbarLeft = styled.div``;
-const HamburgerIcon = styled.img``;
+const HamburgerIcon = styled.img`
+  cursor: pointer;
+`;
 
 export { NavbarWrapper, NavbarLead, NavbarHeader, NavbarLeft, HamburgerIcon };

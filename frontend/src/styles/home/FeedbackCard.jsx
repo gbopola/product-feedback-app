@@ -21,6 +21,14 @@ const FeedbackCardWrapper = styled.div`
   }
 `;
 
+const FeedbackMobileWrapper = styled.div`
+  display: flex,
+  justify-content: space-between,
+  align-items: center,
+  width: 100%,
+  margin-top: 1.25rem,
+`;
+
 const FeedbackCardLeft = styled.div`
   display: flex;
 `;
@@ -81,4 +89,5 @@ export {
   FeedbackUpvoteIcon,
   FeedbackUpvoteCount,
   FeedbackCardContent,
+  FeedbackMobileWrapper,
 };

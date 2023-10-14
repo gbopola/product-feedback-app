@@ -11,7 +11,7 @@ import TopBar from "../components/home/TopBar";
 import FeedbackEmpty from "../components/home/FeedbackEmpty";
 import FeedbackBody from "../components/home/FeedbackBody";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getFeedbacks } from "../features/feedback/feedbackSlice";
 import LoadingSpinner from "../components/shared/LoadingSpinner";
 import Navbar from "../components/home/Navbar";
@@ -28,6 +28,9 @@ const Home = () => {
     message,
   } = useSelector((state) => state.feedback);
 
+  // navbar open state
+  const [isOpen, setOpen] = useState(false);
+
   useEffect(() => {
     dispatch(getFeedbacks());
   }, []);
@@ -37,7 +40,7 @@ const Home = () => {
   ) : (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       <HomeWrapper>
-        <Navbar />
+        <Navbar isOpen={isOpen} setOpen={setOpen} />
         <HomeColumnOne>
           <Banner />
           <Tags />

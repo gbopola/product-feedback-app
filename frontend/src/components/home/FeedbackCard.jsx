@@ -3,6 +3,7 @@ import {
   FeedbackCardContent,
   FeedbackCardLeft,
   FeedbackCardWrapper,
+  FeedbackMobileWrapper,
 } from "../../styles/home/FeedbackCard";
 import {
   CommentsCount,
@@ -29,21 +30,21 @@ const FeedbackCard = ({ feedback }) => {
           <Tag>{feedback.category}</Tag>
         </FeedbackCardContent>
       </FeedbackCardLeft>
-      <CommentsWrapper>
+      <CommentsWrapper className="mobile-comment-wrapper">
         <CommentsIcon src={commentIcon} />
         <CommentsCount $comments={feedback.comments}>
           {getTotalComments(feedback)}
         </CommentsCount>
       </CommentsWrapper>
-      <div>
+      <FeedbackMobileWrapper>
         <UpvoteBtnRoadmap feedback={feedback} />
-        <CommentsWrapper>
+        <CommentsWrapper style={{ display: "flex", alignItems: "center" }}>
           <CommentsIcon src={commentIcon} />
           <CommentsCount $comments={feedback.comments}>
             {getTotalComments(feedback)}
           </CommentsCount>
         </CommentsWrapper>
-      </div>
+      </FeedbackMobileWrapper>
     </FeedbackCardWrapper>
   );
 };

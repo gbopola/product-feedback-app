@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   NavbarWrapper,
   NavbarLeft,
@@ -8,14 +8,17 @@ import {
 } from "../../styles/home/Navbar.styled";
 import hamburgerIcon from "../../assets/shared/mobile/icon-hamburger.svg";
 
-const Navbar = () => {
+const Navbar = ({ isOpen, setOpen }) => {
+  const setNavOpen = () => {
+    setOpen(!isOpen);
+  };
   return (
     <NavbarWrapper>
       <NavbarLeft>
         <NavbarHeader>Frontend Mentor</NavbarHeader>
         <NavbarLead>Feedback Board</NavbarLead>
       </NavbarLeft>
-      <HamburgerIcon src={hamburgerIcon} />
+      <HamburgerIcon src={hamburgerIcon} onClick={() => setNavOpen(!isOpen)} />
     </NavbarWrapper>
   );
 };
