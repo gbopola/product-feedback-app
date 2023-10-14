@@ -8,7 +8,7 @@ const TagsWrapper = styled.div`
   padding: 1.5rem;
   border-radius: 10px;
 
-  @media (max-width: 870px) {
+  @media (max-width: 880px) {
     margin: 0;
     height: 100%;
   }

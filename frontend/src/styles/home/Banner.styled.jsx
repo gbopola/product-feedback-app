@@ -7,7 +7,7 @@ const BannerWrapper = styled.div`
   height: 137px;
   padding: 0 1.5rem;
   padding-top: 4rem;
-  @media (max-width: 870px) {
+  @media (max-width: 880px) {
     height: 100%;
     padding-top: 6rem;
   }

@@ -7,8 +7,12 @@ const TopBarContainer = styled.div`
   padding: 0.85rem 0.85rem 0.85rem 1.25rem;
   background: #373f68;
   border-radius: 10px;
-  @media (max-width: 870px) {
+  @media (max-width: 880px) {
     margin: 0;
+  }
+
+  @media (max-width: 740px) {
+    border-radius: 0;
   }
 `;
 
@@ -17,7 +21,11 @@ const TopBarLeft = styled.div`
   align-items: center;
 `;
 
-const TopBarImg = styled.img``;
+const TopBarImg = styled.img`
+  @media (max-width: 740px) {
+    display: none;
+  }
+`;
 
 const TopBarCount = styled.p`
   font-weight: bold;
@@ -26,6 +34,10 @@ const TopBarCount = styled.p`
   color: #fff;
   margin-left: 1rem;
   margin-right: 2.5rem;
+
+  @media (max-width: 740px) {
+    display: none;
+  }
 `;
 
 const TopBarSort = styled.p`

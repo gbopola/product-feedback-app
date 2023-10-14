@@ -15,6 +15,7 @@ import { Tag } from "../../styles/home/Tags.styled";
 import { Link } from "react-router-dom";
 import UpvoteBtn from "../shared/UpvoteBtn";
 import { getTotalComments } from "../../utils/functions";
+import UpvoteBtnRoadmap from "../shared/UpvoteBtnRoadmap";
 const FeedbackCard = ({ feedback }) => {
   return (
     <FeedbackCardWrapper>
@@ -34,6 +35,15 @@ const FeedbackCard = ({ feedback }) => {
           {getTotalComments(feedback)}
         </CommentsCount>
       </CommentsWrapper>
+      <div>
+        <UpvoteBtnRoadmap feedback={feedback} />
+        <CommentsWrapper>
+          <CommentsIcon src={commentIcon} />
+          <CommentsCount $comments={feedback.comments}>
+            {getTotalComments(feedback)}
+          </CommentsCount>
+        </CommentsWrapper>
+      </div>
     </FeedbackCardWrapper>
   );
 };

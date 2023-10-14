@@ -16,6 +16,7 @@ const UpvoteBtn = ({ feedback }) => {
   return (
     <FeedbackUpvoteWrapper
       className={checkIfUpvoted(user._id, feedback.upvotes) && "active"}
+      id="mobile"
       onClick={() => dispatch(upvoteFeedback(feedback._id))}
     >
       <FeedbackUpvoteIcon

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Title } from "../shared/Shared.styled";
+import { CommentsWrapper, Title } from "../shared/Shared.styled";
 
 const FeedbackCardContainer = styled.div`
   margin-top: 1.5rem;
@@ -32,7 +32,6 @@ const FeedbackUpvoteWrapper = styled.div`
   align-items: center;
   width: 40px;
   height: 53px;
-
   background: #f2f4fe;
   border-radius: 10px;
   cursor: pointer;

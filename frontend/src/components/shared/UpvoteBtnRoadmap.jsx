@@ -17,6 +17,7 @@ const UpvoteBtnRoadmap = ({ feedback }) => {
       className={
         checkIfUpvoted(user._id, feedback.upvotes) ? "active flex" : "flex"
       }
+      id="mobile-upvote"
       onClick={() => dispatch(upvoteFeedback(feedback._id))}
     >
       <FeedbackUpvoteIcon

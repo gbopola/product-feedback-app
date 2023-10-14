@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getFeedbacks } from "../features/feedback/feedbackSlice";
 import LoadingSpinner from "../components/shared/LoadingSpinner";
+import Navbar from "../components/home/Navbar";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -36,7 +37,7 @@ const Home = () => {
   ) : (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       <HomeWrapper>
-        {/* <Navbar /> */}
+        <Navbar />
         <HomeColumnOne>
           <Banner />
           <Tags />
