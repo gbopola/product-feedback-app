@@ -544,7 +544,7 @@ span {
   margin-left: 0.75rem;
 `,NM=A.p`
   font-weight: bold;
-`,Lf=({title:e,color:t,count:n})=>w.jsxs($M,{children:[w.jsxs(tC,{children:[w.jsx(nC,{color:t}),w.jsx(rC,{children:e})]}),w.jsx(NM,{children:n})]}),Vs=e=>{let t=0;return t+=e.comments.length,e.comments.forEach(n=>{t+=n.replies.length}),t},Wo=(e,t)=>{let n=0;for(const r of e)r.status===t&&n++;return n},oC=e=>e.replace(/\s/g,""),Ho=(e,t)=>t.includes(e),FM=({feedbacks:e})=>w.jsxs(OM,{children:[w.jsxs(LM,{children:[w.jsx(DM,{children:"Roadmap"}),w.jsx(MM,{to:"/roadmap",children:"View"})]}),w.jsxs(_M,{children:[w.jsx(Lf,{title:"Planned",count:Wo(e,"planned"),color:"#f49f85"}),w.jsx(Lf,{title:"In-Progess",count:Wo(e,"in-progress"),color:"#AD1FEA"}),w.jsx(Lf,{title:"Live",count:Wo(e,"live"),color:"#62BCFA"})]})]}),IM=A.div`
+`,Lf=({title:e,color:t,count:n})=>w.jsxs($M,{children:[w.jsxs(tC,{children:[w.jsx(nC,{color:t}),w.jsx(rC,{children:e})]}),w.jsx(NM,{children:n})]}),Vs=e=>{let t=0;return t+=e.comments.length,e.comments.forEach(n=>{t+=n.replies.length}),t},Wo=(e,t)=>{let n=0;for(const r of Object.keys(e))e[r].status===t&&n++;return n},oC=e=>e.replace(/\s/g,""),Ho=(e,t)=>t.includes(e),FM=({feedbacks:e})=>(console.log(e),w.jsxs(OM,{children:[w.jsxs(LM,{children:[w.jsx(DM,{children:"Roadmap"}),w.jsx(MM,{to:"/roadmap",children:"View"})]}),w.jsxs(_M,{children:[w.jsx(Lf,{title:"Planned",count:Wo(e,"planned"),color:"#f49f85"}),w.jsx(Lf,{title:"In-Progess",count:Wo(e,"in-progress"),color:"#AD1FEA"}),w.jsx(Lf,{title:"Live",count:Wo(e,"live"),color:"#62BCFA"})]})]})),IM=A.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -607,7 +607,7 @@ span {
   color: #fff;
 `,n_=A.div``,r_=A.img`
   cursor: pointer;
-`,o_="/assets/icon-hamburger-d347188c.svg",i_=({isOpen:e,setOpen:t})=>{const n=()=>{t(!e)};return w.jsxs(ZM,{children:[w.jsxs(n_,{children:[w.jsx(t_,{children:"Frontend Mentor"}),w.jsx(e_,{children:"Feedback Board"})]}),w.jsx(r_,{src:o_,onClick:()=>n()})]})},s_=()=>{const e=Ct(),{filteredFeedbacks:t,feedbacks:n,roadmapFeedbacks:r,isLoading:o,isError:i,message:s}=St(u=>u.feedback),[a,l]=E.useState(!1);return E.useEffect(()=>{e(rl())},[]),o?w.jsx(pc,{}):w.jsx(on.div,{initial:{opacity:0},animate:{opacity:1},children:w.jsxs(hO,{children:[w.jsx(i_,{isOpen:a,setOpen:l}),w.jsxs(mO,{children:[w.jsx(SO,{}),w.jsx(AM,{}),w.jsx(FM,{feedbacks:n})]}),w.jsxs(gO,{children:[w.jsx(GM,{feedbacks:t}),n&&n.filter(u=>u.status==="suggestion").length===0?w.jsx(qM,{}):w.jsx(XM,{feedbacks:t})]})]})})},hc="/assets/icon-arrow-left-96dda59a.svg",cC=A.div`
+`,o_="/assets/icon-hamburger-d347188c.svg",i_=({isOpen:e,setOpen:t})=>{const n=()=>{t(!e)};return w.jsxs(ZM,{children:[w.jsxs(n_,{children:[w.jsx(t_,{children:"Frontend Mentor"}),w.jsx(e_,{children:"Feedback Board"})]}),w.jsx(r_,{src:o_,onClick:()=>n()})]})},s_=()=>{const e=Ct(),{filteredFeedbacks:t,feedbacks:n,roadmapFeedbacks:r,isLoading:o,isError:i,message:s}=St(u=>u.feedback),[a,l]=E.useState(!1);return E.useEffect(()=>{e(rl())},[]),o?w.jsx(pc,{}):w.jsx(on.div,{initial:{opacity:0},animate:{opacity:1},children:w.jsxs(hO,{children:[w.jsx(i_,{isOpen:a,setOpen:l}),w.jsxs(mO,{children:[w.jsx(SO,{}),w.jsx(AM,{}),w.jsx(FM,{feedbacks:n})]}),w.jsxs(gO,{children:[w.jsx(GM,{feedbacks:t}),n.length>0&&n.filter(u=>u.status==="suggestion").length===0?w.jsx(qM,{}):w.jsx(XM,{feedbacks:t})]})]})})},hc="/assets/icon-arrow-left-96dda59a.svg",cC=A.div`
   width: 540px;
   margin: 6rem auto;
 `,fC=A.form`

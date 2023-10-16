@@ -48,7 +48,7 @@ const Home = () => {
         </HomeColumnOne>
         <HomeColumnTwo>
           <TopBar feedbacks={filteredFeedbacks} />
-          {feedbacks &&
+          {feedbacks.length > 0 &&
           feedbacks.filter((feedback) => feedback.status === "suggestion")
             .length === 0 ? (
             <FeedbackEmpty />

@@ -12,11 +12,11 @@ export const getTotalComments = (data) => {
 
   return totalComments;
 };
-
 export const countFeedback = (feedbacks, status) => {
   let count = 0;
 
-  for (const feedback of feedbacks) {
+  for (const feedbackKey of Object.keys(feedbacks)) {
+    const feedback = feedbacks[feedbackKey];
     if (feedback.status === status) {
       count++;
     }
