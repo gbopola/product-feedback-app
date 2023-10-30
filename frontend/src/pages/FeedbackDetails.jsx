@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { DetailsWrapper, FeedbackBtn } from "../styles/shared/Shared.styled";
 import DetailsCard from "../components/details/DetailsCard";
 import { useDispatch, useSelector } from "react-redux";
-import { getSingleFeedback } from "../features/feedback/feedbackSlice";
+import { getSingleFeedback, reset } from "../features/feedback/feedbackSlice";
 import { BackToHomeBtn, BackToHomeIcon } from "../styles/roadmap/TopBar.styled";
 import arrowLeft from "../assets/shared/icon-arrow-left.svg";
 import { useNavigate } from "react-router-dom";

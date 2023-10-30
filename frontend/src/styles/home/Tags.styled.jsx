@@ -12,6 +12,11 @@ const TagsWrapper = styled.div`
     margin: 0;
     height: 100%;
   }
+
+  @media (max-width: 740px) {
+    margin-top: 1.5rem;
+    height: auto;
+  }
 `;
 
 const Tag = styled.button`

@@ -10,7 +10,6 @@ import StatusBar from "./StatusBar";
 import { countFeedback } from "../../utils/functions";
 
 const Status = ({ feedbacks }) => {
-  console.log(feedbacks);
   return (
     <StatusWrapper>
       <StatusHeader>

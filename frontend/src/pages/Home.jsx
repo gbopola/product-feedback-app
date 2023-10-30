@@ -12,9 +12,10 @@ import FeedbackEmpty from "../components/home/FeedbackEmpty";
 import FeedbackBody from "../components/home/FeedbackBody";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { getFeedbacks } from "../features/feedback/feedbackSlice";
+import { getFeedbacks, reset } from "../features/feedback/feedbackSlice";
 import LoadingSpinner from "../components/shared/LoadingSpinner";
 import Navbar from "../components/home/Navbar";
+import SideNav from "../components/home/SideNav";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -33,12 +34,17 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getFeedbacks());
+
+    return () => {
+      dispatch(reset());
+    };
   }, []);
 
   return isLoading ? (
     <LoadingSpinner />
   ) : (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+      {isOpen && <SideNav feedbacks={feedbacks} />}
       <HomeWrapper>
         <Navbar isOpen={isOpen} setOpen={setOpen} />
         <HomeColumnOne>

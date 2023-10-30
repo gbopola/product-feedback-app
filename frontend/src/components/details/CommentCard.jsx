@@ -42,7 +42,6 @@ const CommentCard = ({ comment, index }) => {
         comment.replies.map((comment) => (
           <CommentReplies comment={comment} key={comment._id} />
         ))}
-      {/* <CommentReplies comment={comment} /> */}
     </CommentsWrapper>
   );
 };

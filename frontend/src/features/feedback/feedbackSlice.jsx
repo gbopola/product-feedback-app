@@ -91,10 +91,10 @@ export const getSingleFeedback = createAsyncThunk(
 // Delete feedback
 export const deleteFeedback = createAsyncThunk(
   "feedbacks/delete",
-  async (id, thunkAPI) => {
+  async (feedbackId, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token;
-      return await feedbackService.deleteFeedback(id, token);
+      await feedbackService.deleteFeedback(feedbackId, token);
     } catch (error) {
       const message =
         (error.response &&
@@ -214,8 +214,8 @@ export const feedbackSlice = createSlice({
       .addCase(createFeedback.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.feedbacks = action.payload;
         state.filteredFeedbacks.push(action.payload);
+        state.feedbacks.push(action.payload);
       })
       .addCase(createFeedback.rejected, (state, action) => {
         state.isLoading = false;
@@ -312,12 +312,14 @@ export const feedbackSlice = createSlice({
       .addCase(deleteFeedback.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.filteredFeedbacks = state.filteredFeedbacks.filter(
-          (feedback) => feedback._id !== action.payload.id
-        );
-        state.feedbacks = state.feedbacks.filter(
-          (feedback) => feedback._id !== action.payload.id
-        );
+
+        // state.filteredFeedbacks = state.filteredFeedbacks.filter(
+        //   (feedback) => feedback._id !== action.payload.id
+        // );
+        // state.feedbacks = state.feedbacks.filter(
+        //   (feedback) => feedback._id !== action.payload.id
+        // );
+        console.log(action.payload);
       })
       .addCase(deleteFeedback.rejected, (state, action) => {
         state.isLoading = false;

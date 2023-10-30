@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import arrowLeft from "../../assets/shared/icon-arrow-left.svg";
 import arrowDown from "../../assets/shared/icon-arrow-down.svg";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import {
   BackToHomeBtn,
@@ -24,6 +24,7 @@ import { FeedbackBtn } from "../../styles/shared/Shared.styled";
 import {
   deleteFeedback,
   editFeedback,
+  reset,
 } from "../../features/feedback/feedbackSlice";
 import iconEdit from "../../assets/shared/icon-edit-feedback.svg";
 import { AnimatePresence } from "framer-motion";
@@ -37,14 +38,14 @@ const EditForm = ({ feedback }) => {
     description: feedback.description,
   });
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const { title, category, status, description } = formData;
 
   const [error, setError] = useState(false);
   const [isOpenCategory, setOpenCategory] = useState(false);
   const [isOpenStatus, setOpenStatus] = useState(false);
-
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   //  set values in state
   const handleChange = (e) => {
@@ -82,11 +83,13 @@ const EditForm = ({ feedback }) => {
   };
 
   // delete feedback
-  const deleteSingleFeedback = (e) => {
+  const deleteSingleFeedback = (e, id) => {
     e.preventDefault();
 
-    dispatch(deleteFeedback(feedback._id));
+    dispatch(deleteFeedback(id));
+
     navigate("/");
+    return;
   };
 
   // capitalise based on status
@@ -203,7 +206,10 @@ const EditForm = ({ feedback }) => {
         ) : null}
 
         <ButtonGroup>
-          <FeedbackBtn onClick={deleteSingleFeedback} className="btn-delete">
+          <FeedbackBtn
+            onClick={(e) => deleteSingleFeedback(e, feedback._id)}
+            className="btn-delete"
+          >
             Delete
           </FeedbackBtn>
           <div>

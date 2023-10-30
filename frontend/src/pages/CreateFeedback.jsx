@@ -23,8 +23,9 @@ import { Link, useNavigate } from "react-router-dom";
 import iconAddNew from "../assets/shared/icon-new-feedback.svg";
 import { FormInput } from "../styles/auth/Auth.styled";
 import { createFeedback } from "../features/feedback/feedbackSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import FormSelectDropdown from "../components/shared/FormSelectDropdownCategory";
+import { useEffect } from "react";
 const CreateFeedback = () => {
   const [formData, setFormData] = useState({
     title: "",
@@ -54,8 +55,8 @@ const CreateFeedback = () => {
     }
 
     dispatch(createFeedback(formData));
-
     navigate("/");
+    return;
   };
 
   // set category

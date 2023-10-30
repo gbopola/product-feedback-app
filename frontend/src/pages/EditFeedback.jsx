@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
-import { getSingleFeedback, reset } from "../features/feedback/feedbackSlice";
+import { getSingleFeedback } from "../features/feedback/feedbackSlice";
 import { useDispatch, useSelector } from "react-redux";
 import EditForm from "../components/edit/EditForm";
 import LoadingSpinner from "../components/shared/LoadingSpinner";

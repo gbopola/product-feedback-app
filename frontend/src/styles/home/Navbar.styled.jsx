@@ -8,6 +8,7 @@ const NavbarWrapper = styled.nav`
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
+    z-index: 100;
   }
 `;
 const NavbarLead = styled.p`

@@ -14,6 +14,7 @@ import {
 
 const HomeWrapper = styled.div`
   display: flex;
+
   width: 1100px;
   margin: 6rem auto;
 
@@ -41,9 +42,33 @@ const HomeWrapper = styled.div`
     margin: 0;
     padding: 0;
 
+    ${FeedbackUpvoteWrapper} {
+      &#mobile-upvote {
+        display: flex;
+        align-items: center;
+        width: 69px;
+        height: 34px;
+      }
+    }
+
+    ${Title} {
+      font-size: 13px;
+    }
+
+    .text {
+      font-size: 13px;
+    }
+
+    ${FeedbackCardContent} {
+      margin-left: 0;
+    }
+
+    ${FeedbackUpvoteWrapper} {
+      display: none;
+    }
+
     ${FeedbackEmptyWrapper} {
       margin: 1.25rem 1rem;
-      
       padding: 8rem 2rem;
 
       p {
@@ -58,46 +83,10 @@ const HomeWrapper = styled.div`
 
     ${FeedbackEmptyTitle} {
       font-size: 18px;
-    
+    }
 
     ${FeedbackCardContainer} {
       margin: 1.5rem 1rem;
-    }
-
-    margin-bottom: 1rem;
-
-    ${Title} {
-      font-size: 13px;
-    }
-
-    .text {
-      font-size: 13px;
-    }
-
-    ${FeedbackMobileWrapper} {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      align-items: center;
-      margin-top: 1.25rem;
-
-      ${CommentsWrapper} {
-        font-size: 13px;
-      }
-    }
-
-    ${FeedbackCardContent} {
-      margin-left: 0;
-    }
-
-    ${FeedbackUpvoteWrapper} {
-      &#mobile {
-        display: none;
-      }
-
-      &#mobile-upvote {
-        display: flex;
-      }
     }
 
     ${FeedbackCardWrapper} {

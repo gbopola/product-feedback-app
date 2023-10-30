@@ -10,6 +10,11 @@ const StatusWrapper = styled.div`
     height: 100%;
     margin: 0;
   }
+
+  @media (max-width: 740px) {
+    height: auto;
+    margin-top: 1.5rem;
+  }
 `;
 
 const StatusHeader = styled.div`

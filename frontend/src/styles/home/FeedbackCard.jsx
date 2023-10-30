@@ -22,11 +22,16 @@ const FeedbackCardWrapper = styled.div`
 `;
 
 const FeedbackMobileWrapper = styled.div`
-  display: flex,
-  justify-content: space-between,
-  align-items: center,
-  width: 100%,
-  margin-top: 1.25rem,
+  @media (max-width: 740px) {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    margin-top: 1rem;
+    ${CommentsWrapper} {
+      font-size: 13px;
+    }
+  }
 `;
 
 const FeedbackCardLeft = styled.div`
